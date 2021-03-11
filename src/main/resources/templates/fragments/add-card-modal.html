@@ -1,0 +1,41 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="modal fade" id="addCard" role="dialog" th:fragment="add-card-modal">
+    <div class="modal-dialog modal-sm">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Card</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" th:action="@{/add-card}" th:object="${addCardForm}">
+
+                    <input th:name="${_csrf.parameterName}" th:value="${_csrf.token}" type="hidden"/>
+
+                    <div class="form-group">
+                        <label>Card Balance</label>
+                        <input class="form-control" id="balance" name="balance"
+                               placeholder="Card Balance" required th:errorclass="is-invalid" th:field="*{cardBalance}" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label>Currency</label>
+                        <select class="form-control" id="currency" required th:field="*{currency}">
+                            <option value="euro">Euro</option>
+                            <option value="dollar">Dollar</option>
+                            <option value="pound">Pound</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-md btn-success btn-block" id="addBtn" type="submit">Add</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
